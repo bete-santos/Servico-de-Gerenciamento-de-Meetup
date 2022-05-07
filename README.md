@@ -1,6 +1,6 @@
 # Bootcamp Java Womakerscode 2022
 
-## 🤔 O que é o projeto?
+## O que é o projeto?
 
 Consiste num pequeno microservice que irá ter lado de client e server no momento de se cadastrar num meetup.
 
