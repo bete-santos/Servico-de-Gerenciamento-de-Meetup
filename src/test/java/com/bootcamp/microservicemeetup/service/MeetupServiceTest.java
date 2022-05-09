@@ -51,7 +51,7 @@ public class MeetupServiceTest {
         Meetup meetup = createValidRegistrationMeetup();
 
         //execucao
-        Mockito.when(repository.existsByRegistrationMeetup(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repository.existsByRegistration(Mockito.any())).thenReturn(false);
         Mockito.when(repository.save(meetup)).thenReturn(createValidRegistrationMeetup());
 
         Meetup savedRegistrationMeetup = service.save(meetup);
@@ -71,7 +71,7 @@ public class MeetupServiceTest {
     public void shouldNotSaveAsRegistrationDuplicated() {
 
         Meetup meetup = createValidRegistrationMeetup();
-        Mockito.when(repository.existsByRegistrationMeetup(Mockito.any())).thenReturn(true);
+        Mockito.when(repository.existsByRegistration(Mockito.any())).thenReturn(true);
 
         Throwable exception = Assertions.catchThrowable(() -> service.save(meetup));
         assertThat(exception)
@@ -166,7 +166,7 @@ public class MeetupServiceTest {
         //execução
         Mockito.when(repository.findAll(Mockito.any(Example.class), Mockito.any(PageRequest.class))).thenReturn(page);
 
-        Page<Meetup> result = service.findAll(registrationMeetup, pageRequest);
+        Page<Meetup> result = service.findAll(pageRequest);
 
         //assert
         assertThat(result.getTotalElements()).isEqualTo(1);

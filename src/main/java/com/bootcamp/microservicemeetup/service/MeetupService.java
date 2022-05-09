@@ -11,7 +11,7 @@ public interface MeetupService {
 
     Meetup save(Meetup meetup);
 
-    Page<Meetup> findAll(MeetupFilterDTO dto, Pageable pageable);
+    Page<Meetup> findAll(Pageable pageable);
 
     Optional<Meetup> getRegistrationByMeetupId(Integer id);
 
@@ -19,6 +19,6 @@ public interface MeetupService {
 
     Meetup update(Meetup meetup);
 
-    Optional<Meetup> getRegistrationByRegistration(String meetup);
+    Optional<Meetup> getRegistrationByRegistration(Integer id);
 
 }

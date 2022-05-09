@@ -53,7 +53,7 @@ public class MeetupController {
 
     @GetMapping
     public Page<MeetupDTO> findAll(MeetupFilterDTO dto, Pageable pageRequest) {
-        Page<Meetup> result = meetupService.findAll(dto, pageRequest);
+        Page<Meetup> result = meetupService.findAll(pageRequest);
         List<MeetupDTO> meetups = result
                 .getContent()
                 .stream()

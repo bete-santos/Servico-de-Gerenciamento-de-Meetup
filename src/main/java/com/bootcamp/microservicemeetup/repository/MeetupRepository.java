@@ -6,26 +6,22 @@ import com.bootcamp.microservicemeetup.model.entity.Registration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
 public interface MeetupRepository extends JpaRepository<Meetup,Integer > {
 
 
-//    @Query(value = "Select 1 from Meetup as 1 join 1.registration as b where b.registration = :registration or 1.event = :event ")
-//    Page<Meetup> findByRegistrationOnMeetup(
-//        @Param("registration") String registration,
-//        @Param("event") String event,
-//        Pageable pageable
-//    );
-
-    Page<Meetup> findAll(MeetupFilterDTO dto, Pageable pageable);
+    @Query(value = "Select 1 from Meetup as meetup join meetup.registration as registration" +
+            " where registration.id = :registrationId")
+    boolean existsByRegistrationName(
+        @Param("registrationId") String registration
+    );
 
     Page<Meetup> findByRegistration(Registration registration, Pageable pageable);
 
-    boolean existsByRegistrationMeetup(String registration);
+    boolean existsByRegistration(Registration registration);// existe um meetup que possui esse registration?
 
-    Optional<Meetup> findByRegistrationOnMeetup(String meetup);
-
-    Meetup update(Meetup meetup);
 }

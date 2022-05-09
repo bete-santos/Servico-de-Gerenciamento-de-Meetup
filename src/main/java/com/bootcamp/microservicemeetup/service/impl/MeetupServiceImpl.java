@@ -28,8 +28,8 @@ public class MeetupServiceImpl implements MeetupService {
     }
 
     @Override
-    public Page<Meetup> findAll(MeetupFilterDTO dto, Pageable pageable) {
-        return repository.findAll(dto, pageable);
+    public Page<Meetup> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
@@ -47,11 +47,11 @@ public class MeetupServiceImpl implements MeetupService {
 
     @Override
     public Meetup update(Meetup meetup) {
-        return repository.update(meetup);
+        return repository.save(meetup);
     }
 
     @Override
-    public Optional<Meetup> getRegistrationByRegistration(String meetup) {
-        return repository.findByRegistrationOnMeetup(meetup);
+    public Optional<Meetup> getRegistrationByRegistration(Integer id) {
+        return repository.findById(id);
     }
 }
